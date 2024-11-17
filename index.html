@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For a Thousand Years</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    class="overlay"></div>
+    <nav class="nav">
+        <button class="dropdown-btn">
+            Menu
+            <span class="dropdown-icon"></span>
+        </button>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="#messages" class="nav-link">Template words</a></li>
+            <li class="nav-item"><a href="#how_long" class="nav-link">How long</a></li>
+            <li class="nav-item"><a href="#profile" class="nav-link">Profile</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        const dropdownBtn = document.querySelector('.dropdown-btn');
+        const dropdownIcon = document.querySelector('.dropdown-icon');
+        const navList = document.querySelector('.nav-list');
+        const overlay = document.querySelector('.overlay');
+
+        dropdownBtn.addEventListener('click', () => {
+            dropdownIcon.classList.toggle('active');
+            navList.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        overlay.addEventListener('click', () => {
+            dropdownIcon.classList.remove('active');
+            navList.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Close dropdown when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                dropdownIcon.classList.remove('active');
+                navList.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
+
+    <header id="home" class="header">
+        <!-- Background overlay -->
+        <div class="overlay"></div>
+
+        <!-- Main content -->
+        <div class="content">
+            <h1 class="title text-white">We're in 2024</h1>
+            <p class="subtitle">For a Thousand more</p>
+            <p class="date">2024 - end</p>
+
+            <!-- Love button and message -->
+            <div class="love-message" id="loveMessage">Love u Kesya</div>
+            <button class="love-button">
+                <span class="heart">❤️</span>
+            </button>
+        </div>
+    </header>
+
+    <script>
+        // Love button functionality
+        const loveButton = document.querySelector('.love-button');
+        const message = document.getElementById('loveMessage');
+        let isMessageShown = false;
+
+        loveButton.addEventListener('click', () => {
+            if (!isMessageShown) {
+                message.classList.add('show');
+                isMessageShown = true;
+            } else {
+                message.classList.remove('show');
+                isMessageShown = false;
+            }
+        });
+
+        // Floating hearts background
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = '❤️';
+
+            // Random position and size
+            const startX = Math.random() * window.innerWidth;
+            heart.style.left = startX + 'px';
+
+            const animationDuration = 5 + Math.random() * 5;
+            heart.style.animationDuration = animationDuration + 's';
+
+            const size = 10 + Math.random() * 20;
+            heart.style.fontSize = size + 'px';
+
+            document.querySelector('.header').appendChild(heart);
+
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Create new hearts every 300ms
+        setInterval(createHeart, 300);
+    </script>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 flex justify-center bg-gray-100">
+        <div class="bg-white border-4 border-dashed border-pink-500 rounded-lg p-8 shadow-lg max-w-4xl relative">
+            <!-- Judul -->
+            <h2 class="text-4xl font-bold text-center text-pink-600 mb-12 relative">
+                How we first met
+                <div class="absolute left-1/2 transform -translate-x-1/2 mt-2">
+                    <!-- Love border -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-pink-500" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.5 3.5 5 5.5 5c1.54 0 3.04.99 3.57 2.36h.87C10.46 5.99 11.96 5 13.5 5 15.5 5 17 6.5 17 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                </div>
+            </h2>
+
+            <!-- Isi -->
+            <div class="max-w-3xl mx-auto text-center">
+                <!-- Aldivo's Story -->
+                <p class="text-xl font-bold underline decoration-pink-400 decoration-dotted mb-2">Aldivo</p>
+                <p class="text-gray-700 font-medium italic leading-relaxed mt-4 mb-6 px-4">
+                    "Waktu pertama kali bertemu, aku sedang berada di apartemen. Ketika aku mendatanginya, aku melihat
+                    Keysha sangat rapi pakaiannya dan wangi. Ia terlihat sangat cantik, dan aku merasa sedikit grogi
+                    karena
+                    setelah sekian lama, aku jatuh cinta lagi padanya."
+                </p>
+
+                <!-- Keysha's Story -->
+                <p class="text-xl font-bold underline decoration-pink-400 decoration-dotted mb-2">Keysha</p>
+                <p class="text-gray-700 font-medium italic leading-relaxed mt-4 mb-6 px-4">
+                    "Waktu pertama kali ketemu, aku takut dengan Aldivo. Karena Aldivo adalah orang yang begitu
+                    menyeramkan
+                    bagiku entah karena ia berbadan tinggi, atau besar aku tidak tahu. Aku merasakan ketakutan pada saat
+                    pertama kali kita bertemu."
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="about" class="py-20 px-4 bg-pink-50">
+        <h2 class="text-4xl font-bold text-center text-pink-600 mb-12">Dear, Keysha</h2>
+        <div class="max-w-3xl mx-auto text-center">
+            <!-- Add button -->
+            <button id="revealBtn"
+                class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg mb-8 transition duration-300">
+                Reveal Message ✨
+            </button>
+
+            <div id="textContainer" class="hidden-text">
+                <p id="typingText" class="text-gray-700 font-bold leading-relaxed mt-4 mb-4 typing-cursor">
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const text = `Dear, Keysha. Kita sudah bersama selama lebih dari 8 tahun. Aku senang bertemu dengan kamu, karena kamu adalah orang yang dinamis dihidupku. Selalu ada saja tingkah lucunya, rewelnya, cemberutnya. Disaat kamu lagi marah, terkadang aku merasa kalau hal itu sangat lucu, kaya kucing yang berlagak seperti singa. Kamu pun terlihat sangat cantik. Dikarenakan aku sayang kamu, kamu terlihat semakin cantik, Keysha.`;
+
+        let index = 0;
+        let isTyping = false;
+
+        document.getElementById('revealBtn').addEventListener('click', function () {
+            if (isTyping) return; // Prevent multiple clicks while typing
+
+            isTyping = true;
+            this.disabled = true;
+            this.textContent = 'Revealing... ✨';
+
+            const container = document.getElementById('textContainer');
+            const typingText = document.getElementById('typingText');
+
+            container.classList.remove('hidden-text');
+            container.classList.add('visible-text');
+
+            function typeText() {
+                if (index < text.length) {
+                    typingText.textContent = text.slice(0, index + 1);
+                    index++;
+                    setTimeout(typeText, 40); // Adjust speed here (lower number = faster)
+                } else {
+                    isTyping = false;
+                    document.getElementById('revealBtn').style.display = 'none';
+                    typingText.classList.remove('typing-cursor');
+                }
+            }
+
+            typeText();
+        });
+    </script>
+
+    <!-- OUR GALLERY -->
+    <section id="gallery" class="py-20 px-4 bg-gradient-to-r from-pink-700 to-pink-800 relative">
+        <!-- Animated Background -->
+        <div class="gallery-background">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <h2 class="text-4xl font-bold text-center text-pink-100 mb-12 z-10 relative">Our Gallery</h2>
+
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            <!-- Gallery Card -->
+            <div
+                class="gallery-card bg-pink-50 rounded-lg shadow-lg overflow-hidden flex flex-col border-2 border-pink-300 relative">
+                <div class="absolute left-0 right-0 top-2 border-t-2 border-dashed border-pink-400 z-10"></div>
+                <div class="absolute left-0 right-0 top-4 border-t-2 border-dashed border-pink-400 z-10"></div>
+
+                <div class="h-64 flex items-center justify-center bg-pink-100 border-b-2 border-pink-300">
+                    <img src="assets/our_photo_2.jpg" alt="Student 1" class="w-full h-full object-contain p-4">
+                </div>
+                <div class="p-6 text-center bg-pink-50 relative">
+                    <div class="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-pink-200 to-transparent">
+                    </div>
+                    <div class="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-pink-200 to-transparent">
+                    </div>
+
+                    <h3 class="text-xl font-bold text-pink-800 mb-2">25 February 2024</h3>
+                    <p class="text-pink-600 italic">"Ayo Kesya kita foto dulu sebelum pulang"</p>
+                </div>
+            </div>
+            <div
+                class="gallery-card bg-pink-50 rounded-lg shadow-lg overflow-hidden flex flex-col border-2 border-pink-300 relative">
+                <div class="absolute left-0 right-0 top-2 border-t-2 border-dashed border-pink-400 z-10"></div>
+                <div class="absolute left-0 right-0 top-4 border-t-2 border-dashed border-pink-400 z-10"></div>
+
+                <div class="h-64 flex items-center justify-center bg-pink-100 border-b-2 border-pink-300">
+                    <img src="assets/our_photo_3.jpg" alt="Student 1" class="w-full h-full object-contain p-4">
+                </div>
+                <div class="p-6 text-center bg-pink-50 relative">
+                    <div class="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-pink-200 to-transparent">
+                    </div>
+                    <div class="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-pink-200 to-transparent">
+                    </div>
+
+                    <h3 class="text-xl font-bold text-pink-800 mb-2">1 November 2024</h3>
+                    <p class="text-pink-600 italic">"Aku gamauuu... aku jeleekkk..."</p>
+                </div>
+            </div>
+            <div
+                class="gallery-card bg-pink-50 rounded-lg shadow-lg overflow-hidden flex flex-col border-2 border-pink-300 relative">
+                <div class="absolute left-0 right-0 top-2 border-t-2 border-dashed border-pink-400 z-10"></div>
+                <div class="absolute left-0 right-0 top-4 border-t-2 border-dashed border-pink-400 z-10"></div>
+
+                <div class="h-64 flex items-center justify-center bg-pink-100 border-b-2 border-pink-300">
+                    <img src="assets/our_photo_4.jpg" alt="Student 1" class="w-full h-full object-contain p-4">
+                </div>
+                <div class="p-6 text-center bg-pink-50 relative">
+                    <div class="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-pink-200 to-transparent">
+                    </div>
+                    <div class="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-pink-200 to-transparent">
+                    </div>
+
+                    <h3 class="text-xl font-bold text-pink-800 mb-2">1 November 2024</h3>
+                    <p class="text-pink-600 italic">"Wleeee..."</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox">
+            <button class="lightbox-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="lightbox-content">
+                <img src="" alt="Enlarged view" id="lightbox-image">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const closeBtn = document.querySelector('.lightbox-close');
+            const galleryCards = document.querySelectorAll('.gallery-card');
+
+            // Open lightbox
+            galleryCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const img = this.querySelector('img');
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            // Close lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+
+    <section id="messages" class="py-20 px-4 bg-gradient-to-r from-pink-300 to-pink-500 relative">
+        <!-- Animated Background -->
+        <div class="messages-background">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Section Title -->
+        <h2 class="text-2xl sm:text-4xl font-bold text-center text-white mb-8 relative z-10">Template Words</h2>
+
+        <!-- Message Grid -->
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 relative z-10">
+            <!-- Keysha Section -->
+            <div class="keysha font-bold">
+                <p class="text-pink-800 mb-4 text-xl sm:text-2xl" data-aos="fade-up">Keysha</p>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"DIVOOOO...."</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Kamu sayang aku nggak?"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"MOK"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"AKU MLS SM KM BAI"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"AKU YA SUNGKAN LO SAMA MAMI PAPI"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Kamu sayang siapa sih??"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Kamu ga sayang aku ya?"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Kamu suka siapa?"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Boong"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Masa?"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Cupu ah"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-pink-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"YAUDA VO"</p>
+                </div>
+            </div>
+
+            <!-- Aldivo Section -->
+            <div class="aldivo font-bold">
+                <p class="text-purple-800 mb-4 text-xl sm:text-2xl" data-aos="fade-up">Aldivo</p>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Ndut"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Bentar ya sayang"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Sebentar lagi sibuk sayang"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Kamu lagi apa ndut?"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Haduh lamanya anak ini"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"He anak kecil"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Gundulmu"</p>
+                </div>
+                <div class="message-card bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-500 mb-4"
+                    data-aos="fade-up">
+                    <p class="text-gray-600 text-base sm:text-lg">"Gapapa ndut"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div id="message-lightbox"
+            class="message-lightbox hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <button class="message-lightbox-close absolute top-4 right-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="message-lightbox-content p-4 bg-white rounded shadow-lg">
+                <p id="lightbox-text" class="text-xl sm:text-3xl text-center"></p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const lightbox = document.getElementById('message-lightbox');
+            const lightboxText = document.getElementById('lightbox-text');
+            const closeBtn = document.querySelector('.message-lightbox-close');
+            const messageCards = document.querySelectorAll('.message-card');
+
+            // Open lightbox
+            messageCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const text = this.querySelector('p').textContent;
+                    lightboxText.textContent = text;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            // Close lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+
+
+    <!-- HOW LONG -->
+    <section id="how_long" class="py-20 px-4 bg-gradient-to-b from-pink-100 to-lavender-200 relative">
+        <div class="floating-bg"></div>
+        <h2 class="text-4xl font-bold text-center text-pink-600 mb-12 relative">How long we're together</h2>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Duration Card 1 -->
+            <div
+                class="duration-card rounded-lg shadow-lg flex flex-col items-center justify-center h-64 bg-pink-50 border-l-4 border-pink-500 pulse-animation">
+                <div class="text-5xl text-pink-700">
+                    <span class="duration-number" data-target="11" data-suffix="+">0</span>
+                    <span class="duration-label text-xl block mt-2">Years</span>
+                </div>
+            </div>
+            <!-- Duration Card 2 -->
+            <div
+                class="duration-card rounded-lg shadow-lg flex flex-col items-center justify-center h-64 bg-pink-50 border-l-4 border-pink-500 pulse-animation">
+                <div class="text-5xl text-purple-700">
+                    <span class="duration-number" data-target="132" data-suffix="+">0</span>
+                    <span class="duration-label text-xl block mt-2">Months</span>
+                </div>
+            </div>
+            <!-- Duration Card 3 -->
+            <div
+                class="duration-card rounded-lg shadow-lg flex flex-col items-center justify-center h-64 bg-pink-50 border-l-4 border-pink-500 pulse-animation">
+                <div class="text-5xl text-pink-700">
+                    <span class="duration-number" data-target="3960" data-suffix="+">0</span>
+                    <span class="duration-label text-xl block mt-2">Days</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const numberElements = document.querySelectorAll('.duration-number');
+            const observerOptions = {
+                threshold: 0.5
+            };
+
+            function animateValue(element, start, end, duration) {
+                const suffix = element.dataset.suffix || '';
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const currentValue = Math.floor(progress * (end - start) + start);
+                    element.textContent = currentValue + suffix;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.dataset.target);
+                        animateValue(entry.target, 0, target, 2000);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            numberElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+    <section class="profile-section bg-pink-500" id="profile">
+        <h2 class="title text-white">Our Profile</h2>
+        <div class="container">
+            <!-- Aldivo Card -->
+            <div class="card" id="card1">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="assets/aldivo.jpg" alt="Aldivo" class="profile-img">
+                        <h3 class="name">Aldivo</h3>
+                        <p class="trait">Sabar</p>
+                        <p class="trait">Baik</p>
+                        <p class="trait">Sering sibuk</p>
+                        <button class="flip-button" data-flip="front">Small Description</button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="name">About Aldivo</h3>
+                        <p class="additional-info">A patient and kind-hearted individual who's always ready to help
+                            despite
+                            his busy schedule.</p>
+                        <p class="additional-info">💼 Often engaged in various activities</p>
+                        <p class="additional-info">🌟 Known for patience and kindness</p>
+                        <button class="flip-button" data-flip="back">Back to profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keysha Card -->
+            <div class="card" id="card2">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="assets/keysha.jpg" alt="Keysha" class="profile-img">
+                        <h3 class="name">Keysha</h3>
+                        <p class="trait">Pemarah</p>
+                        <p class="trait">Cewe tidak bercerita tetapi prengat-prengut</p>
+                        <p class="trait">Rewel</p>
+                        <button class="flip-button" data-flip="front">Small Description</button>
+                    </div>
+                    <div class="card-back">
+                        <h3 class="name">About Keysha</h3>
+                        <p class="additional-info">An expressive individual who wears her heart on her sleeve.</p>
+                        <p class="additional-info">😊 Shows emotions openly</p>
+                        <p class="additional-info">💭 Communicates through expressions</p>
+                        <button class="flip-button" data-flip="back">Back to profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            const buttons = card.querySelectorAll('.flip-button');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    card.classList.toggle('flipped');
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-pink-800 text-white py-8 px-4 text-center mt-4">
+        <p class="mb-2">© 2024 Aldivo Ishen - All Rights Reserved</p>
+        <p>Created by love to Beloved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
