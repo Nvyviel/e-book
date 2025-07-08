@@ -5,6 +5,22 @@
   box-sizing: border-box;
 }
 
+/* MOBILE-FIRST RESPONSIVE DESIGN */
+/* Mobile touch targets should be at least 44px */
+.mobile-optimized {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* App Container - Single Root Element */
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Mobile Navigation Improvements */
 .nav {
   position: fixed;
   top: 0;
@@ -12,21 +28,50 @@
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 50;
-  padding: 1rem;
+  padding: 0.75rem 1rem; /* Reduced padding for mobile */
 }
 
+/* Enhanced mobile-friendly dropdown button */
 .dropdown-btn {
   background-color: white;
   color: #ef4444;
-  padding: 10px 20px;
+  padding: 12px 20px; /* 44px height for touch target */
   border: 2px solid #ef4444;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
+  min-height: 44px; /* Accessibility minimum touch target */
+  font-size: 16px; /* Prevent zoom on mobile */
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.5rem 1rem;
+  }
+  
+  .dropdown-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .nav-list {
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    min-width: auto;
+  }
+  
+  .nav-link {
+    padding: 16px 20px; /* Larger touch targets on mobile */
+    font-size: 16px;
+  }
 }
 
 .dropdown-btn:hover {
@@ -157,7 +202,7 @@ body {
   animation: fadeInDown 1s ease-in-out 0.3s backwards;
 }
 
-/* Heart button styles */
+/* Heart button styles - Mobile Optimized */
 .love-button {
   background: none;
   border: none;
@@ -167,6 +212,18 @@ body {
   padding: 20px;
   margin-top: 2rem;
   z-index: 10;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation; /* Prevents double-tap zoom on iOS */
+}
+
+/* Mobile optimizations for love button */
+@media (max-width: 768px) {
+  .love-button {
+    font-size: 40px;
+    padding: 16px;
+    margin-top: 1.5rem;
+  }
 }
 
 .love-button:hover {
@@ -490,6 +547,22 @@ body {
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
   z-index: 1;
+  min-height: 44px; /* Touch target */
+  touch-action: manipulation;
+}
+
+/* Mobile optimizations for message cards */
+@media (max-width: 768px) {
+  .message-card {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+    min-height: 60px; /* Larger touch area on mobile */
+  }
+  
+  .message-card p {
+    font-size: 1rem !important;
+    line-height: 1.5;
+  }
 }
 
 .message-card:hover {
@@ -760,6 +833,21 @@ body {
   margin-top: 1rem;
   font-size: 1rem;
   width: fit-content;
+  min-height: 44px; /* Mobile touch target */
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Mobile optimizations for flip buttons */
+@media (max-width: 768px) {
+  .flip-button {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 200px;
+    margin: 1rem auto 0 auto;
+    display: block;
+  }
 }
 
 .flip-button:hover {
@@ -768,4 +856,193 @@ body {
 
 .card-back .flip-button {
   margin-top: auto;
+}
+
+/* COMPREHENSIVE MOBILE-FIRST RESPONSIVE DESIGN */
+/* Global mobile optimizations */
+@media (max-width: 768px) {
+  /* Header/Hero Section */
+  .header {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem !important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem !important;
+  }
+  
+  .date {
+    font-size: 1rem !important;
+  }
+  
+  .love-message {
+    font-size: 2rem !important;
+    margin-top: 1rem;
+  }
+  
+  /* Section Paddings - Mobile Optimized */
+  section {
+    padding: 3rem 1rem !important;
+  }
+  
+  /* Text sizing for mobile readability */
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Gallery Mobile Optimization */
+  .gallery-card {
+    margin-bottom: 1.5rem;
+    min-height: 60px;
+  }
+  
+  /* Profile Cards Mobile */
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 300px;
+    height: 400px;
+  }
+  
+  /* Duration Cards Mobile */
+  .duration-card {
+    min-height: 120px;
+    padding: 1.5rem !important;
+  }
+  
+  .duration-number {
+    font-size: 2.5rem !important;
+  }
+  
+  .duration-label {
+    font-size: 1rem !important;
+  }
+  
+  /* Template Messages Mobile */
+  .max-w-5xl {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  .keysha, .aldivo {
+    margin-bottom: 2rem;
+  }
+  
+  /* Lightbox Mobile */
+  .message-lightbox-content {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+    width: auto;
+    padding: 1.5rem;
+  }
+  
+  /* Grid adjustments for mobile */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .sm\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .md\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .lg\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575px) {
+  .header {
+    min-height: 100vh;
+  }
+  
+  .title {
+    font-size: 2rem !important;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem !important;
+  }
+  
+  section {
+    padding: 2rem 0.75rem !important;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .dropdown-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .nav-link {
+    padding: 14px 16px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch device specific styles */
+@media (hover: none) and (pointer: coarse) {
+  .message-card,
+  .gallery-card,
+  .flip-button,
+  .love-button,
+  .dropdown-btn {
+    min-height: 48px; /* Larger touch targets for touch devices */
+  }
+  
+  .message-card:hover,
+  .gallery-card:hover {
+    transform: none; /* Remove hover effects on touch devices */
+  }
+}
+
+/* High density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .profile-img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }

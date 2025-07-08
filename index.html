@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-    class="overlay"></div>
+    <div class="overlay"></div>
     <nav class="nav">
         <button class="dropdown-btn">
             Menu
@@ -60,7 +60,9 @@
         });
     </script>
 
-    <header id="home" class="header">
+    <!-- Main App Container - Single Root Element -->
+    <div class="app-container">
+        <header id="home" class="header">
         <!-- Background overlay -->
         <div class="overlay"></div>
 
@@ -168,7 +170,7 @@
         <div class="max-w-3xl mx-auto text-center">
             <!-- Add button -->
             <button id="revealBtn"
-                class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg mb-8 transition duration-300">
+                class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg mb-8 transition duration-300 min-h-[44px] min-w-[44px] touch-manipulation mobile-optimized">
                 Reveal Message ✨
             </button>
 
@@ -633,6 +635,8 @@
         <p class="mb-2">© 2024 Aldivo Ishen - All Rights Reserved</p>
         <p>Created by love to Beloved.</p>
     </footer>
+    </div>
+    <!-- End Main App Container -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
