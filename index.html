@@ -3,31 +3,47 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For a Thousand Years</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ec4899">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="A romantic journey through time - For a Thousand Years. Celebrating the love story of Aldivo and Keysha.">
+    <meta name="keywords" content="love story, romance, relationship, memories, photo gallery">
+    <meta name="author" content="Aldivo Ishen">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="For a Thousand Years - Love Story">
+    <meta property="og:description" content="A romantic journey celebrating the love story of Aldivo and Keysha">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nvyviel.github.io/e-book/">
+    
+    <!-- Mobile app capabilities -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="For a Thousand Years">
+    
+    <title>For a Thousand Years - Love Story</title>
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-
-    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-    class="overlay"></div>
+    <!-- Navigation overlay -->
+    <div class="overlay"></div>
     <nav class="nav">
-        <button class="dropdown-btn">
-            Menu
-            <span class="dropdown-icon"></span>
+        <button class="dropdown-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span>Menu</span>
+            <span class="dropdown-icon" aria-hidden="true"></span>
         </button>
-        <ul class="nav-list">
-            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
-            <li class="nav-item"><a href="#messages" class="nav-link">Template words</a></li>
-            <li class="nav-item"><a href="#how_long" class="nav-link">How long</a></li>
-            <li class="nav-item"><a href="#profile" class="nav-link">Profile</a></li>
+        <ul class="nav-list" role="menu">
+            <li class="nav-item"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+            <li class="nav-item"><a href="#gallery" class="nav-link" role="menuitem">Gallery</a></li>
+            <li class="nav-item"><a href="#messages" class="nav-link" role="menuitem">Template words</a></li>
+            <li class="nav-item"><a href="#how_long" class="nav-link" role="menuitem">How long</a></li>
+            <li class="nav-item"><a href="#profile" class="nav-link" role="menuitem">Profile</a></li>
         </ul>
     </nav>
 
@@ -37,26 +53,58 @@
         const navList = document.querySelector('.nav-list');
         const overlay = document.querySelector('.overlay');
 
-        dropdownBtn.addEventListener('click', () => {
+        // Enhanced mobile navigation
+        dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = navList.classList.contains('active');
+            
             dropdownIcon.classList.toggle('active');
             navList.classList.toggle('active');
             overlay.classList.toggle('active');
+            
+            // Update ARIA attributes
+            dropdownBtn.setAttribute('aria-expanded', !isActive);
+            
+            // Prevent body scroll when menu is open on mobile
+            if (!isActive) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
 
         // Close dropdown when clicking outside
         overlay.addEventListener('click', () => {
-            dropdownIcon.classList.remove('active');
-            navList.classList.remove('active');
-            overlay.classList.remove('active');
+            closeNavigation();
         });
 
         // Close dropdown when clicking a link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                dropdownIcon.classList.remove('active');
-                navList.classList.remove('active');
-                overlay.classList.remove('active');
+                closeNavigation();
             });
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navList.classList.contains('active')) {
+                closeNavigation();
+            }
+        });
+
+        function closeNavigation() {
+            dropdownIcon.classList.remove('active');
+            navList.classList.remove('active');
+            overlay.classList.remove('active');
+            dropdownBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navList.classList.contains('active')) {
+                closeNavigation();
+            }
         });
     </script>
 
@@ -71,55 +119,100 @@
             <p class="date">2024 - end</p>
 
             <!-- Love button and message -->
-            <div class="love-message" id="loveMessage">Love u Kesya</div>
-            <button class="love-button">
-                <span class="heart">❤️</span>
+            <div class="love-message" id="loveMessage" role="alert" aria-live="polite">Love u Kesya</div>
+            <button class="love-button" aria-label="Show love message">
+                <span class="heart" aria-hidden="true">❤️</span>
             </button>
         </div>
     </header>
 
     <script>
-        // Love button functionality
+        // Enhanced love button functionality
         const loveButton = document.querySelector('.love-button');
         const message = document.getElementById('loveMessage');
         let isMessageShown = false;
 
-        loveButton.addEventListener('click', () => {
+        loveButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            
             if (!isMessageShown) {
                 message.classList.add('show');
+                loveButton.setAttribute('aria-label', 'Hide love message');
                 isMessageShown = true;
+                
+                // Add vibration for mobile devices
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(200);
+                }
             } else {
                 message.classList.remove('show');
+                loveButton.setAttribute('aria-label', 'Show love message');
                 isMessageShown = false;
             }
         });
 
-        // Floating hearts background
+        // Enhanced floating hearts background with performance optimization
+        let heartInterval;
+        let isPageVisible = true;
+
         function createHeart() {
+            if (!isPageVisible) return;
+            
             const heart = document.createElement('div');
             heart.className = 'bg-heart';
             heart.innerHTML = '❤️';
+            heart.setAttribute('aria-hidden', 'true');
 
             // Random position and size
             const startX = Math.random() * window.innerWidth;
             heart.style.left = startX + 'px';
 
-            const animationDuration = 5 + Math.random() * 5;
+            const animationDuration = 4 + Math.random() * 4; // Reduced for performance
             heart.style.animationDuration = animationDuration + 's';
 
-            const size = 10 + Math.random() * 20;
+            const size = 8 + Math.random() * 16; // Slightly smaller for mobile
             heart.style.fontSize = size + 'px';
 
-            document.querySelector('.header').appendChild(heart);
+            const header = document.querySelector('.header');
+            if (header) {
+                header.appendChild(heart);
 
-            // Remove heart after animation
-            setTimeout(() => {
-                heart.remove();
-            }, animationDuration * 1000);
+                // Remove heart after animation
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.remove();
+                    }
+                }, animationDuration * 1000);
+            }
         }
 
-        // Create new hearts every 300ms
-        setInterval(createHeart, 300);
+        // Optimize heart creation for mobile performance
+        function startHeartAnimation() {
+            const isMobile = window.innerWidth <= 768;
+            const interval = isMobile ? 600 : 400; // Less frequent on mobile
+            heartInterval = setInterval(createHeart, interval);
+        }
+
+        // Handle page visibility changes to improve performance
+        document.addEventListener('visibilitychange', () => {
+            isPageVisible = !document.hidden;
+            if (!isPageVisible && heartInterval) {
+                clearInterval(heartInterval);
+            } else if (isPageVisible && !heartInterval) {
+                startHeartAnimation();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (heartInterval) {
+                clearInterval(heartInterval);
+                startHeartAnimation();
+            }
+        });
+
+        // Start animation
+        startHeartAnimation();
     </script>
 
     <!-- About Section -->
@@ -168,12 +261,14 @@
         <div class="max-w-3xl mx-auto text-center">
             <!-- Add button -->
             <button id="revealBtn"
-                class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg mb-8 transition duration-300">
+                class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg mb-8 transition-all duration-300 transform hover:scale-105 hover:shadow-xl min-h-[44px]"
+                aria-label="Reveal romantic message">
                 Reveal Message ✨
             </button>
 
             <div id="textContainer" class="hidden-text">
-                <p id="typingText" class="text-gray-700 font-bold leading-relaxed mt-4 mb-4 typing-cursor">
+                <p id="typingText" class="text-gray-700 font-bold leading-relaxed mt-4 mb-4 typing-cursor"
+                   role="region" aria-live="polite" aria-label="Romantic message">
                 </p>
             </div>
         </div>
@@ -636,7 +731,136 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        // Initialize AOS with enhanced settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            delay: 100
+        });
+
+        // Enhanced scroll behavior and performance monitoring
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll behavior for navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.nav').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Parallax effect for background elements (performance optimized)
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.gallery-background, .messages-background');
+                
+                parallaxElements.forEach(element => {
+                    const rate = scrolled * -0.5;
+                    element.style.transform = `translateY(${rate}px)`;
+                });
+                
+                ticking = false;
+            }
+
+            function requestParallaxUpdate() {
+                if (!ticking && window.innerWidth > 768) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+
+            // Throttled scroll listener
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(requestParallaxUpdate, 10);
+            }, { passive: true });
+
+            // Intersection Observer for performance-optimized animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-visible');
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Add fade-in class to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('fade-in');
+                fadeInObserver.observe(section);
+            });
+
+            // Enhanced gallery interactions
+            const galleryCards = document.querySelectorAll('.gallery-card');
+            galleryCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                // Add touch feedback for mobile
+                card.addEventListener('touchstart', function() {
+                    this.classList.add('touch-active');
+                }, { passive: true });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('touch-active');
+                    }, 150);
+                }, { passive: true });
+            });
+
+            // Performance monitoring and adaptive features
+            const isLowEndDevice = navigator.hardwareConcurrency <= 2;
+            const isSlowConnection = navigator.connection && 
+                (navigator.connection.effectiveType === 'slow-2g' || 
+                 navigator.connection.effectiveType === '2g');
+
+            if (isLowEndDevice || isSlowConnection) {
+                // Reduce animations for low-end devices
+                document.documentElement.classList.add('reduce-motion');
+                
+                // Reduce heart animation frequency
+                if (window.heartInterval) {
+                    clearInterval(window.heartInterval);
+                    window.heartInterval = setInterval(() => {
+                        if (document.visibilityState === 'visible') {
+                            createHeart();
+                        }
+                    }, 1000); // Slower for low-end devices
+                }
+            }
+        });
+
+        // Service Worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Only register if we have a service worker file
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
     </script>
 </body>
 
