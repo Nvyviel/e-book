@@ -556,7 +556,7 @@ body {
 }
 
 .duration-label {
-  color: #bf3f7f;
+  color: #374151;
   font-size: 1.25rem;
   margin-top: 0.5rem;
   text-transform: uppercase;
@@ -652,7 +652,7 @@ body {
   align-items: center;
   padding: 1.5rem;
   background: white;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -692,11 +692,11 @@ body {
 }
 
 .flip-button {
-  background: #ef4444;
+  background: #3b82f6;
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
   margin-top: 1rem;
@@ -705,7 +705,7 @@ body {
 }
 
 .flip-button:hover {
-  background: #b91c1c;
+  background: #1d4ed8;
 }
 
 .card-back .flip-button {
