@@ -3,16 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For a Thousand Years</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ec4899">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="A romantic journey through time - For a Thousand Years. Celebrating the love story of Aldivo and Keysha.">
+    <meta name="keywords" content="love story, romance, relationship, memories, photo gallery">
+    <meta name="author" content="Aldivo Ishen">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="For a Thousand Years - Love Story">
+    <meta property="og:description" content="A romantic journey celebrating the love story of Aldivo and Keysha">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nvyviel.github.io/e-book/">
+    
+    <!-- Mobile app capabilities -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="For a Thousand Years">
+    
+    <title>For a Thousand Years - Love Story</title>
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-
-    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
@@ -716,7 +731,136 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        // Initialize AOS with enhanced settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            delay: 100
+        });
+
+        // Enhanced scroll behavior and performance monitoring
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll behavior for navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.nav').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Parallax effect for background elements (performance optimized)
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.gallery-background, .messages-background');
+                
+                parallaxElements.forEach(element => {
+                    const rate = scrolled * -0.5;
+                    element.style.transform = `translateY(${rate}px)`;
+                });
+                
+                ticking = false;
+            }
+
+            function requestParallaxUpdate() {
+                if (!ticking && window.innerWidth > 768) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+
+            // Throttled scroll listener
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(requestParallaxUpdate, 10);
+            }, { passive: true });
+
+            // Intersection Observer for performance-optimized animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-visible');
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Add fade-in class to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('fade-in');
+                fadeInObserver.observe(section);
+            });
+
+            // Enhanced gallery interactions
+            const galleryCards = document.querySelectorAll('.gallery-card');
+            galleryCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                // Add touch feedback for mobile
+                card.addEventListener('touchstart', function() {
+                    this.classList.add('touch-active');
+                }, { passive: true });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('touch-active');
+                    }, 150);
+                }, { passive: true });
+            });
+
+            // Performance monitoring and adaptive features
+            const isLowEndDevice = navigator.hardwareConcurrency <= 2;
+            const isSlowConnection = navigator.connection && 
+                (navigator.connection.effectiveType === 'slow-2g' || 
+                 navigator.connection.effectiveType === '2g');
+
+            if (isLowEndDevice || isSlowConnection) {
+                // Reduce animations for low-end devices
+                document.documentElement.classList.add('reduce-motion');
+                
+                // Reduce heart animation frequency
+                if (window.heartInterval) {
+                    clearInterval(window.heartInterval);
+                    window.heartInterval = setInterval(() => {
+                        if (document.visibilityState === 'visible') {
+                            createHeart();
+                        }
+                    }, 1000); // Slower for low-end devices
+                }
+            }
+        });
+
+        // Service Worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Only register if we have a service worker file
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
     </script>
 </body>
 
